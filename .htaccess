@@ -1,0 +1,16 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/panchenkowork/hw9-server.panchenko.work"
+PassengerBaseURI "/"
+PassengerNodejs "/home/panchenkowork/nodevenv/hw9-server.panchenko.work/10/bin/node"
+PassengerAppType node
+PassengerStartupFile app.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION BEGIN
+<IfModule Litespeed>
+SetEnv NODE_ENV development
+SetEnv DATABASE_USER panchenkowork_user
+SetEnv DATABASE_PASSWORD 36355693801
+SetEnv DATABASE_NAME panchenkowork_hw9
+SetEnv DATABASE_HOST 185.67.3.96
+</IfModule>
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION END

@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "panchenkowork_user",
+    "password": "36355693801",
+    "database": "panchenkowork_hw9",
+    "host": "185.67.3.96",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "panchenkowork_user",
+    "password": "36355693801",
+    "database": "panchenkowork_hw9",
+    "host": "185.67.3.96",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "panchenkowork_user",
+    "password": "36355693801",
+    "database": "panchenkowork_hw9",
+    "host": "185.67.3.96",
+    "dialect": "mysql"
+  }
+}
