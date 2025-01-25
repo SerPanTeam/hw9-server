@@ -1,4 +1,5 @@
 "use strict";
+require("dotenv").config();
 const { checkAuthorization, checkRole } = require("./middleware");
 
 const bcrypt = require("bcrypt");
@@ -7,14 +8,16 @@ const SECRET_KEY =
   process.env.SECRET_KEY || "<<<!__Your_Secret_Key_123456789__?>>>";
 const JWT_OPTIONS = { expiresIn: "1h", algorithm: "HS256" };
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
-require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
+
 const { User } = require("./models");
 const PORT = process.env.PORT || 3333;
 
