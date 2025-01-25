@@ -10,11 +10,16 @@ const JWT_OPTIONS = { expiresIn: "1h", algorithm: "HS256" };
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
-
 const express = require("express");
 const cors = require("cors");
 const app = express();
-app.use(cors());
+const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:3000";
+app.use(
+  cors({
+    origin: CLIENT_ORIGIN,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
@@ -24,8 +29,6 @@ const PORT = process.env.PORT || 3333;
 app.get("/", (req, res) => {
   return res.status(200).json({ message: "Hallo. Port: " + PORT });
 });
-
-
 
 app.get("/users", checkAuthorization, checkRole("admin"), async (req, res) => {
   try {
@@ -96,6 +99,16 @@ app.post("/login", async (req, res) => {
       );
 
       const { password, ...sanitizedUser } = user.toJSON();
+
+      res.cookie("authToken", token, {
+        httpOnly: true, // Защита от доступа через JavaScript
+        // secure: process.env.NODE_ENV === "production", // Только для HTTPS в продакшене
+        secure: false,
+        //sameSite: "Strict", // Ограничение отправки с третьих сторон
+        maxAge: 3600000, // Время жизни куки (1 час)
+        sameSite: "None",
+      });
+
       return res.status(200).json({
         message: "Login successful!",
         token,
